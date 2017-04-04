@@ -1,0 +1,66 @@
+#!/usr/bin/env node
+
+ora = require('ora')
+args = require('args')
+table = require('text-table')
+chunk = require('even-chunks')
+namesake = require('namesake')
+
+{ log, error } = console
+
+args
+  .option('limit', 'Limit the number of results returned.', 50)
+  .option('help', 'Show usage information.')
+
+flags = args.parse(process.argv, {
+  name: 'namesake'
+  value: '<word>'
+  help: false
+  usageFilter (data) ->
+    description =
+      '  Generate a list of words that just so happen to also\n' +
+      '  be available as npm package names.\n\n' +
+      '  Optionally, you can use any word as input to find\n' +
+      '  related words and terms.'
+
+    array = data.split('\n')
+    array.splice(2, 0, '', `${description}`)
+    array.join('\n')
+})
+
+if flags.help: args.showHelp()
+
+word = args.sub[0]
+text = !!word
+  ? `finding available package names related to '${word}'...`
+  : `finding available package names...`
+
+spinner = ora({
+  text
+  spinner: 'dots9'
+}).start()
+
+namesake(word, flags)
+  .then(names =>
+    spinner.stop()
+
+    chunked = chunk(
+      names,
+      parseInt(names.length / 3),
+      chunk.PRIORITIZE_FIRST
+    )
+    
+    header = !!word
+      ? `Available package names related to '${word}':\n`
+      : `Some available package names:`
+
+    log('')
+    log(header)
+    log(table(chunked))
+  )
+  .catch(err =>
+    { stack, message } = err
+    spinner.fail(`Oops! -> ${message}`)
+    error(stack.slice(stack.indexOf('\n')))
+    process.exit(1)
+  )

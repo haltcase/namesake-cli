@@ -1,0 +1,72 @@
+{
+  "name": "namesake-cli",
+  "version": "1.0.0",
+  "description": "Find available & relevant npm package names from the command line.",
+  "author": {
+    "name": "Bo Lingen",
+    "email": "thecitycide@gmail.com",
+    "url": "github.com/citycide"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/citycide/namesake-cli.git"
+  },
+  "homepage": "https://github.com/citycide/namesake-cli",
+  "bugs": "https://github.com/citycide/namesake-cli/issues",
+  "engines": {
+    "node": ">=4"
+  },
+  "keywords": [
+    "cli",
+    "name",
+    "finder",
+    "utility",
+    "authors",
+    "maintainers",
+    "lightscript"
+  ],
+  "bin": {
+    "namesake": "./bin/index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "build": "babel src -d bin -x .lsc",
+    "watch": "npm run build -- -w",
+    "pretest": "npm run build",
+    "test": "ava",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "args": "^2.4.1",
+    "even-chunks": "^1.1.0",
+    "namesake": "1.0.0",
+    "ora": "^1.2.0",
+    "text-table": "^0.2.0"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "babel-cli": "^6.24.0",
+    "babel-plugin-lightscript": "^0.4.2",
+    "babel-preset-env": "^1.3.2",
+    "execa": "^0.6.3",
+    "npm-name": "^3.0.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": 4
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "lightscript"
+    ]
+  }
+}
