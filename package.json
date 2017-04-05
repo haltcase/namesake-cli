@@ -30,6 +30,7 @@
     "namesake": "./bin/index.js"
   },
   "files": [
+    "bin",
     "index.js"
   ],
   "scripts": {
