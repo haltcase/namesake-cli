@@ -1,6 +1,6 @@
 {
   "name": "namesake-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Find available & relevant npm package names from the command line.",
   "author": {
     "name": "Bo Lingen",
