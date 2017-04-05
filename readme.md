@@ -2,6 +2,8 @@
 
 > Find available & relevant npm package names from the command line.
 
+![](preview.gif)
+
 Supposedly:
 
 > There are only three hard things in Computer Science:
