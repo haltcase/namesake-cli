@@ -36,7 +36,7 @@
   "scripts": {
     "build": "babel src -d bin -x .lsc",
     "watch": "npm run build -- -w",
-    "pretest": "npm run build",
+    "pretest": "npm run build && node ./permfix.js",
     "test": "ava",
     "prepublish": "npm run build"
   },
