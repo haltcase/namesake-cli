@@ -51,7 +51,7 @@ namesake(word, flags)
 
     chunked = chunk(
       names,
-      parseInt(names.length / 3),
+      Math.floor(names.length / 3),
       chunk.PRIORITIZE_FIRST
     )
 
