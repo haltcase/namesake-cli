@@ -49,10 +49,10 @@ namesake(word, flags)
       parseInt(names.length / 3),
       chunk.PRIORITIZE_FIRST
     )
-    
+
     header = !!word
       ? `Available package names related to '${word}':\n`
-      : `Some available package names:`
+      : `Some available package names:\n`
 
     log('')
     log(header)
