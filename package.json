@@ -41,17 +41,17 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "args": "^2.4.1",
+    "args": "^2.6.1",
     "even-chunks": "^1.1.0",
-    "namesake": "1.0.0",
+    "namesake": "1.0.1",
     "ora": "^1.2.0",
     "text-table": "^0.2.0"
   },
   "devDependencies": {
-    "ava": "^0.18.2",
+    "ava": "^0.19.1",
     "babel-cli": "^6.24.0",
-    "babel-plugin-lightscript": "^0.4.2",
-    "babel-preset-env": "^1.3.2",
+    "babel-plugin-lightscript": "^0.5.1",
+    "babel-preset-env": "^1.4.0",
     "execa": "^0.6.3",
     "npm-name": "^3.0.0"
   },
