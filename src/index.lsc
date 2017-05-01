@@ -1,36 +1,38 @@
 #!/usr/bin/env node
 
 ora = require('ora')
-args = require('args')
+meow = require('meow')
 table = require('text-table')
 chunk = require('even-chunks')
 namesake = require('namesake')
 
 { log, error } = console
 
-args
-  .option('limit', 'Limit the number of results returned.', 50)
-  .option('help', 'Show usage information.')
+{ input, flags } = meow(`
+  Usage: namesake [word] [options]
 
-flags = args.parse(process.argv, {
-  name: 'namesake'
-  value: '<word>'
-  help: false
-  usageFilter (data) ->
-    description =
-      '  Generate a list of words that just so happen to also\n' +
-      '  be available as npm package names.\n\n' +
-      '  Optionally, you can use any word as input to find\n' +
-      '  related words and terms.'
+  Generate a list of words that just so happen to also
+  be available as npm package names.
 
-    array = data.split('\n')
-    array.splice(2, 0, '', `${description}`)
-    array.join('\n')
+  Optionally, you can use any word as input to find
+  related words and terms.
+
+  Options:
+
+    -h, --help       Show usage information.
+    -v, --version    Output the version number
+    -l, --limit <n>  Limit the number of results returned. (defaults to 50)
+`, {
+  alias: {
+    h: 'help'
+    v: 'version'
+    l: 'limit'
+  }
 })
 
-if flags.help: args.showHelp()
+flags.limit = Number(flags.limit) or 50
 
-word = args.sub[0]
+word = input[0]
 text = !!word
   ? `finding available package names related to '${word}'...`
   : `finding available package names...`
