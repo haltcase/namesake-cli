@@ -37,7 +37,10 @@ text = !!word
 
 spinner = ora({
   text
-  spinner: 'dots9'
+  spinner: {
+    interval: 100
+    frames: ['◜', '◠', '◝', '◞', '◡', '◟']
+  }
 }).start()
 
 namesake(word, flags)
