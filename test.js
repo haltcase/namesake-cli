@@ -2,7 +2,7 @@ import test from 'ava'
 import execa from 'execa'
 import isAvailable from 'npm-name'
 
-const path = './bin/index.js'
+const path = './index.js'
 
 test('when given no input, provides random related terms', async t => {
   let result = await execa.stdout(path, [])
