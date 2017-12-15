@@ -62,7 +62,7 @@ namesake(word, flags)
       chunk.PRIORITIZE_FIRST
     )
 
-    const header = !!word
+    const header = word
       ? `Available package names related to '${word}':\n`
       : `Some available package names:\n`
 
